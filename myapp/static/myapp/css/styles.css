@@ -1,0 +1,216 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #007BFF; /* Change to blue */
+    color: #fff;
+    padding: 20px 0;
+}
+
+header h1 {
+    margin: 0;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin: 10px 0 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.hero {
+    background: url('https://dplusvn.com/wp-content/uploads/2020/01/hinh-anh-van-phong-cong-ty-seongon-2.jpg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 150px 20px;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h2 {
+    font-size: 3em;
+    margin: 0 0 20px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin: 0 0 40px;
+}
+
+.buttons {
+    margin: 20px 0;
+}
+
+.btn {
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.primary-btn {
+    background-color: #007BFF; /* Change to blue */
+    color: #fff;
+}
+
+.primary-btn:hover {
+    background-color: #0056b3; /* Change to lighter blue */
+}
+
+.secondary-btn {
+    background-color: #fff;
+    color: #007BFF; /* Change to blue */
+    border: 2px solid #007BFF; /* Change to blue */
+}
+
+.secondary-btn:hover {
+    background-color: #f1f1f1;
+}
+
+.features {
+    padding: 60px 20px;
+    background-color: #fff;
+    text-align: center;
+    flex: 1;
+}
+
+.features h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.feature-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.feature {
+    flex: 1;
+    margin: 20px;
+    max-width: 300px;
+}
+
+.feature h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Contact Form Styles */
+.contact-form {
+    background-color: #fff;
+    padding: 60px 40px; /* Increase padding */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Increase max-width */
+    margin: 40px auto; /* Increase margin */
+}
+
+.contact-form h2 {
+    font-size: 2.5em; /* Increase font size */
+    margin-bottom: 30px; /* Increase margin */
+    text-align: center;
+}
+
+.contact-form .form-group {
+    margin-bottom: 25px; /* Increase margin */
+}
+
+.contact-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 10px; /* Increase margin */
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 70%;
+    padding: 15px 20px; /* Increase padding */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.1em; /* Increase font size */
+    font-family: 'Roboto', sans-serif;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #007BFF; /* Change to blue */
+    outline: none;
+}
+
+.contact-form button {
+    padding: 20px 30px; /* Increase padding */
+    border-radius: 5px;
+    background-color: #007BFF; /* Change to blue */
+    color: #fff;
+    font-size: 1.2em; /* Increase font size */
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3; /* Change to lighter blue */
+}

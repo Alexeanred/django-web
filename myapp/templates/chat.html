@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Generator Chatbot</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    {% comment %} <link rel="stylesheet" href="{% static 'myapp/css/chatbot.css' %}"> {% endcomment %}
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'myapp/img/chatgpt-favicon.png' %}" type="image/x-icon" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #FFFFFF; /* Đổi background màu trắng */
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .chat-container {
+            width: 80%;
+            margin-left: 20%;
+            height: 100vh;
+            background-color: #F0F8FF; /* Đổi background của hiển thị tin nhắn màu xanh dương nhạt */
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            word-wrap: break-word;
+            display: flex;
+            flex-direction: column;
+            background-color: #007BFF; /* Đổi background của hiển thị tin nhắn màu xanh dương */
+        }
+        .user-message {
+            align-self: flex-end;
+            padding: 10px 20px;
+            max-width: 70%; 
+            border-radius: 10px;
+            font-size: medium;
+            background-color: #007BFF; /* Đổi background của hiển thị tin nhắn màu xanh dương */
+        }
+        .bot-message {
+            border-radius: 10px;
+            align-self: flex-start;
+            padding: 10px 20px;
+            max-width: 70%; 
+            margin-bottom: 10px;
+            word-wrap: break-word;
+            background-color: #007BFF; /* Đổi background của hiển thị tin nhắn màu xanh dương */
+        }
+        .message-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            padding-bottom: 60px; 
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            background-color: #555566;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 20%; 
+            box-sizing: border-box;
+        }
+        .chat-header {
+            background-color: #FFFFFF;
+            color: black;
+            padding: 15px;
+            border-top-left-radius: 20px; /* Bo góc trái trên */
+            border-top-right-radius: 20px; /* Bo góc phải trên */
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            font-size: 24px; /* Increase this value to make the header bigger */
+            font-weight: bold;
+        }
+        .sidebar {
+            width: 20%;
+            border-right:#04AA6D;
+            background-color: #383838;
+            position: fixed;
+            height: 100%;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            border: #04AA6D;
+            display: block;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+        }
+        .sidebar a.active {
+            border: #04AA6D;
+            border-radius: 10px;
+            background-color: #007BFF;
+            color: white;
+        }
+        .sidebar a:hover:not(.active) {
+            background-color: #555;
+            border-radius: 10px;
+            border: #04AA6D;
+            color: white;
+        }
+        .sidebar .logout-button {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+        .sidebar .logout-button:hover {
+            background-color: #007BFF;
+        }
+        .sidebar .delete-button {
+            display: inline-block;
+            color: red;
+            margin-left: 10px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .sidebar .delete-button:hover {
+            color: darkred;
+        }
+        pre {
+            background-color: #FFFFFF;
+            padding: 10px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        {% for chat in chats %}
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <a class="{% if chat.id == chat_id %}active{% endif %}" href="{% url 'list_messages_with_id' chat_id=chat.id %}">Chat {{ forloop.counter }}</a>
+                <a href="{% url 'delete_chat' chat_id=chat.id %}" class="delete-button">X</a>
+            </div>
+        {% endfor %}
+        <a href="{% url 'new_chat' %}">New Chat</a>
+        <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+    </div>
+
+    <div class="chat-container">
+        <header class="chat-header text-center">Chat with CV-GPT to create your own CV</header>
+        <div id="chat-messages" class="message-container">
+            {% for message in messages %}
+                <div class="message">
+                    {% if message.user_message %}
+                        <div class="user-message">
+                            <strong>You:</strong> 
+                            <pre>{{ message.user_message }}</pre>
+                        </div>
+                    {% endif %}
+                    {% if message.bot_response %}
+                        <div class="bot-message">
+                            <strong>CV-GPT:</strong>
+                            <pre>{{ message.bot_response|safe }}</pre>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="input-container">
+        <form action="{% url 'send_message_with_id' chat_id=chat_id %}" method="post" style="display: flex; align-items: center; width: 100%;">
+            {% csrf_token %}
+            <input type="text" name="user_message" placeholder="Type your message here..." class="form-control">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

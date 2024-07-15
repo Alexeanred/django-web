@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - CV-GPT</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>CV-GPT</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'features' %}">Features</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="about">
+        <div class="container">
+            <h2>About CV-GPT</h2>
+            <p>CV-GPT is an innovative platform that leverages AI to help you create professional CVs effortlessly. Our mission is to provide job seekers with the tools they need to stand out in a competitive job market.</p>
+            <p>We believe that everyone deserves a chance to showcase their skills and experience in the best possible way. That's why we offer a range of customizable templates and AI-powered suggestions to enhance your CV.</p>
+            <p>Our team is dedicated to continuously improving our platform to ensure that you have the best experience possible.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CV-GPT. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

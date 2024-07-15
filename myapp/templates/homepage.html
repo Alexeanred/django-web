@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV-GPT</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>CV-GPT</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'features' %}">Features</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>Create Your Professional CV with AI</h2>
+            <p>Our AI-powered CV Builder helps you create a professional and polished CV in minutes.</p>
+            <div class="buttons">
+                <a href="{% url 'about' %}" class="btn primary-btn">Get Started</a>
+                <a href="{% url 'login' %}" class="btn secondary-btn">Login</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="feature-list">
+                <div class="feature">
+                    <h3>AI Assistance</h3>
+                    <p>Get AI-powered suggestions to enhance your CV.</p>
+                </div>
+                <div class="feature">
+                    <h3>Customizable Templates</h3>
+                    <p>Choose from a variety of professionally designed templates.</p>
+                </div>
+                <div class="feature">
+                    <h3>Easy to Use</h3>
+                    <p>Create your CV with an intuitive and user-friendly interface.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CV-GPT. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
