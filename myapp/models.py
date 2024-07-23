@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Chat(models.Model):
     name = models.CharField(max_length=100, default='New Chat')
@@ -22,3 +22,13 @@ class ChatMessage(models.Model):
 
     def __str__(self):
         return f"User: {self.user_message}, Bot: {self.bot_response}"
+
+class Payment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    email = models.EmailField()
+    amount = models.DecimalField(max_digits=6, decimal_places=2)
+    payment_date = models.DateTimeField()
+    has_paid = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.amount} - {self.payment_date}"

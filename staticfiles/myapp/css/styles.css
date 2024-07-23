@@ -4,6 +4,9 @@ body {
     padding: 0;
     background-color: #f9f9f9;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
@@ -114,6 +117,7 @@ nav ul li a {
     padding: 60px 20px;
     background-color: #fff;
     text-align: center;
+    flex: 1;
 }
 
 .features h2 {
@@ -145,8 +149,68 @@ footer {
     color: #fff;
     text-align: center;
     padding: 10px 0;
+    margin-top: auto;
 }
 
 footer p {
     margin: 0;
+}
+
+/* Contact Form Styles */
+.contact-form {
+    background-color: #fff;
+    padding: 60px 40px; /* Increase padding */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Increase max-width */
+    margin: 40px auto; /* Increase margin */
+}
+
+.contact-form h2 {
+    font-size: 2.5em; /* Increase font size */
+    margin-bottom: 30px; /* Increase margin */
+    text-align: center;
+}
+
+.contact-form .form-group {
+    margin-bottom: 25px; /* Increase margin */
+}
+
+.contact-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 10px; /* Increase margin */
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 70%;
+    padding: 15px 20px; /* Increase padding */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.1em; /* Increase font size */
+    font-family: 'Roboto', sans-serif;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #007BFF; /* Change to blue */
+    outline: none;
+}
+
+.contact-form button {
+    padding: 20px 30px; /* Increase padding */
+    border-radius: 5px;
+    background-color: #007BFF; /* Change to blue */
+    color: #fff;
+    font-size: 1.2em; /* Increase font size */
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3; /* Change to lighter blue */
 }

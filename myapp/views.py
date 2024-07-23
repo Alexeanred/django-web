@@ -140,3 +140,26 @@ def contact(request):
 def contact_submit(request):
     # Handle form submission logic
     return render(request, 'contact.html', {'message': 'Thank you for contacting us! We will get back to you soon.'})
+
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from django.contrib.auth.models import User
+from .models import Payment
+
+@login_required
+def confirm_payment(request):
+    if request.method == "POST":
+        user = request.user
+        email = user.email
+        amount = request.POST['amount']
+        payment = Payment.objects.create(
+            user=user,
+            email=email,
+            amount=amount,
+            payment_date=timezone.now(),
+            has_paid=True
+        )
+        return redirect('chat')
+    return render(request, 'checkout.html')
+

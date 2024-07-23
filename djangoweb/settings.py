@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-04f&%5=7oqed8=7yexyvhc*4q!i3_q&*ec-w@o($$o58+anvo%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['duytien.pythonanywhere.com']
 
 
 # Application definition
@@ -127,11 +127,10 @@ STATIC_URL = '/static/'
 
 # Thư mục chứa các tệp tĩnh của ứng dụng
 STATICFILES_DIRS = [
-    BASE_DIR / "myapp" / "static",
+    os.path.join(BASE_DIR, 'myapp/static'),
 ]
-
 # Thư mục chứa các tệp tĩnh được thu thập
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Default primary key field type
